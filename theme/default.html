@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="{{ url }}">{{ title }}</a>
+	
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+{% for menu in menu_list %}
+{% if menu.type == "menu" %}
+			<li class="nav-item"><a class="nav-link bootpage-link" page_url="{{ menu.url }}">{{ menu.title }}</a></li>
+{% elif menu.type == "category" %}
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ menu.title }}</a>
+				<div class="dropdown-menu">
+{% for submenu in menu.submenu %}
+					<a class="dropdown-item bootpage-link" page_url="{{ submenu.url }}">{{ submenu.title }}</a>
+{% endfor %}
+				</div>
+			</li>
+{% endif %}
+{% endfor %}
+		</ul>
+	</div>
+</nav>
+<script>
+$(document).ready(function(){
+	$(".bootpage-link").click(function() {
+		var new_url = $(this).attr("page_url");
+		$("#page_init").attr("page_url", $(this).attr("page_url"));
+		page_patch("page_init");
+	});
+});
+</script>
