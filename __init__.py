@@ -4,4 +4,4 @@ Created on 2017. 11. 7.
 @author: HyechurnJang
 '''
 
-from core import BootPage, Theme
+from core import BootPage, BootPageTheme

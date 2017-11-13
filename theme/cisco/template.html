@@ -1,135 +1,136 @@
-<div id="container"> <!-- container begin -->
+<!-- container begin -->
+<div class="cisco-nav">
 
-	<div class="topnav"><!-- top navigation -->
-		<div class="ham-icon-wrap">
-			<div id="ham-icon">
+	<!-- processbar -->
+	<div class="cisco-progress-wrap">
+		<div id="cisco-progress">
+		</div>
+	</div>
+
+	<!-- topnav -->
+	<div class="cisco-topnav">
+		<div class="cisco-menu-expander-wrap">
+			<div id="cisco-menu-expander">
 			  <span></span> <span></span> <span></span>
 			</div>
 		</div>
-		<div class="main-logo-wrap">
-			<div class="logo-img-wrap">
-				<img class="logo-img" src="assets/logo-300.png" alt="">
-			</div>
-		</div>	
-		<div class="nav-button-wrap">
-			<div class="nav-button nav-button-1">
-				<div class="navtop-circle-icon circle-icon-1" id="profile">
+		<div class="cisco-brand-wrap">
+			<img class="cisco-brand-img bootpage-link" src="{{ logo }}" page_url="{{ init }}">
+			<a class="cisco-brand-title bootpage-link" page_url="{{ init }}">{{ title }}</a>
+		</div>
+		<div class="cisco-topnav-button-wrap">
+			<div class="cisco-topnav-button">
+				<div class="cisco-topnav-circle" id="cisco-topnav-profile">
 					<span class="icon-asset icon-profile"></span>
 				</div>
 			</div>
-			<div class="nav-button nav-button-2">
-				<div class="navtop-circle-icon">
+			<div class="cisco-topnav-button">
+				<div class="cisco-topnav-circle" id="cisco-topnav-refresh">
 					<span class="icon-asset icon-refresh"></span>
 				</div>
 			</div>
-			<div class="nav-button nav-button-3">
-				<div class="navtop-circle-icon">
+			<div class="cisco-topnav-button">
+				<div class="cisco-topnav-circle" id="cisco-topnav-setting">
 					<span class="icon-asset icon-setting"></span>
 				</div>
 			</div>
-			<div class="nav-button nav-button-4">
-				<div class="navtop-circle-icon" id="alarm">
+			<div class="cisco-topnav-button">
+				<div class="cisco-topnav-circle" id="cisco-topnav-alarm">
 					<span class="icon-asset icon-alert"></span>
 				</div>
 			</div>
 		</div>
-	</div><!-- top navigation end -->
+	</div>
+	<!-- topnav end -->
 
-	<div class="sidenav"><!--left-side-navigation-->
-		<div class="sidenav-menu-wrap">
-			<!-- side navigation style -->
-
-			<!-- <div class="sidenav-menu-col sidenav-menu-col-1">
-				<div class="sidenav-icon-wrap">
+	<!-- sidenav -->
+	<div class="cisco-sidenav">
+		<div class="cisco-sidenav-menu-wrap">
+{% for menu in menu_list %}
+{% if menu.type == "menu" %}
+			<div class="cisco-sidenav-menu-col cisco-sidenav-type-menu bootpage-link" page_url="{{ menu.url }}">
+{% elif menu.type == "category" %}
+			<div class="cisco-sidenav-menu-col cisco-sidenav-type-submenu" target_submenu="{{ menu.id }}">
+{% endif %}
+				<div class="cisco-sidenav-icon-wrap">
 					<span class="sidenav-icon-asset icon-summary"></span>
 				</div>
-			</div> -->
-
+			</div>
+{% endfor %}
 		</div>
-
-		<div class="sidenav-menu-info-wrap"><!-- information icon -->
-			<div class="sidenav-menu-info">
+		
+		<!-- information icon -->
+		<div class="cisco-sidenav-menu-info-wrap">
+			<div class="cisco-sidenav-menu-info">
 				<span class="icon-asset icon-information"></span>
 			</div>
 		</div>
+		<!-- information icon end -->
 
-	</div><!-- left-side-navigation end -->
+	</div>
+	<!-- sidenav end -->
 
-	<div class="main-menu menushow"> <!-- main menu -->
-		<div class="main-menu-col-wrap">
-			<!-- main menu without sub menu -->
-
-			<!-- <a href="#">
-				<div class="main-menu-col main-menu-col-1">
-					<div class="main-menu-title-wrap">
-						<p class="main-menu-title">개 요</p>
-					</div>
-					<div class="notice-sub-menu-wrap">
-						<div class="notice-sub-menu">
-							<span class="icon-Asset-31"></span> 
-						</div>
+	<!-- mainmenu -->
+	<div class="cisco-mainmenu">
+		<div class="cisco-mainmenu-col-wrap">
+			<a>
+{% for menu in menu_list %}
+{% if menu.type == "menu" %}
+				<div class="cisco-mainmenu-col cisco-mainmenu-type-menu bootpage-link" page_url="{{ menu.url }}">
+					<div class="cisco-mainmenu-title-wrap">
+						<p class="cisco-mainmenu-title">{{ menu.title }}</p>
 					</div>
 				</div>
-			</a> -->
-
-			<!-- main menu with sub menu -->
-
-			<!-- <a href="#">
-				<div class="main-menu-col main-menu-col-2">
-					<div class="main-menu-title-wrap">
-						<p class="main-menu-title">상 태</p>
+{% elif menu.type == "category" %}
+				<div class="cisco-mainmenu-col cisco-mainmenu-type-submenu">
+					<div class="cisco-mainmenu-title-wrap">
+						<p class="cisco-mainmenu-title">{{ menu.title }}</p>
 					</div>
-					<div class="notice-sub-menu-wrap">
-						<div class="notice-sub-menu">
-							<span class="icon-Asset-31"></span> 
+					<div class="cisco-notice-submenu-wrap">
+						<div class="cisco-notice-submenu"><span class="icon-Asset-31"></span></div>
 					</div>
-			            <ul class="sub-menu-list-wrap" id="sub-menu">
-			                <li class="sub-menu-list">
-			                    <p class="text-sub-menu-list" id="list-1">A</p>
+					<div id="{{ menu.id }}" class="cisco-submenu"> 
+			            <ul class="cisco-submenu-list-wrap">
+{% for submenu in menu.submenu %}
+			                <li class="cisco-submenu-list bootpage-link" page_url="{{ submenu.url }}">
+			                    <p class="cisco-submenu-text">{{ submenu.title }}</p>
 			                </li>
-			                <li class="sub-menu-list">
-			                    <p class="text-sub-menu-list" id="list-2">B</p>
-			                </li>
-			                <li class="sub-menu-list">
-			                    <p class="text-sub-menu-list" id="list-3">C</p>
-			                </li>
-			                
+{% endfor %}
 			            </ul>
 			        </div>
 				</div>
-			</a>-->	
+{% endif %}
+{% endfor %}
+			</a>
 		</div>
 	</div>
-	<!--main menu end-->
-
-	<!--profile page-->
-	<div class="profile-page-wrap">
-		<div class="p-p-half-wrap p-p-left-wrap"><!--profile-left-->
-			<div class="p-p-img-wrap">
-					<img class="p-p-img" src="assets/profile-ex.jpg" alt="">
-			</div>
-			<div class="p-p-title-wrap">
-				<p class="p-p-name">Name</p>
-			</div>
-		</div>
-		<div class="p-p-half-wrap p-p-right-wrap"><!--profile-right-->
-			
-		</div>			
-	</div>
-
-	<!--Alarm Page-->
-	<div class="alarm-page-wrap">
-				
-	</div>
-
-	<!--information page-->
-	<div class="information-page-wrap">
-		<div class="information-page">
-			
-		</div>
-	</div>
-	<!--contents begin-->
+	<div class="cisco-submenu-closer"></div>
+	<!-- mainmenu end -->
 	
-    <!--contents edn-->
+	<!--information -->
+	<div class="cisco-info-page-wrap">
+		<div class="cisco-info">
+			
+		</div>
+	</div>
+	<!--information end -->
 
+	<!-- profile -->
+	<div class="cisco-navtop-tool cisco-profile-wrap">
+		<div class="cisco-profile">
+		
+		</div>
+	</div>
+	<!-- profile end -->
+
+	<!-- alarm -->
+	<div class="cisco-navtop-tool cisco-alarm-wrap">
+		<div class="cisco-alarm">
+		
+		</div>
+	</div>
+	<!-- alarm end -->
+	
 </div>
+
+<div class="cisco-init-wrap">

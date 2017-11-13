@@ -8,7 +8,7 @@ import jinja2
 from pygics import rest
 from page import Page, Static, createVid
 
-class Theme:
+class BootPageTheme:
     
     def __import__(self, bootpage): pass
     def __render__(self, bootpage): pass
@@ -24,11 +24,12 @@ class BootPage(Page):
                  theme=None):
         Page.__init__(self, url, title, favicon, static, cache)
         
-        class DefaultTheme(Theme):
+        class DefaultTheme(BootPageTheme):
             def __init__(self):
-                with open(pwd() + '/theme/default.html') as fd: self.template = jinja2.Template(fd.read()) 
-            def __render__(self, bootpage):
+                with open(pwd() + '/theme/default.html') as fd: self.template = jinja2.Template(fd.read())
+            def __import__(self, bootpage):
                 bootpage.css('/page/bootpage/static/css/theme-default.css')
+            def __render__(self, bootpage):
                 bootpage.header(
                     self.template.render({
                         'url' : bootpage.url, 'title' : bootpage._page_title, 'menu_list' : bootpage._bp_menu
@@ -89,7 +90,7 @@ class BootPage(Page):
         def wrapper(desc):
             self._bp_menu.pop()
             if title not in self._bp_category:
-                category = {'type' : 'category', 'title' : title, 'icon' : icon, 'submenu' : []}
+                category = {'id' : createVid(), 'title' : title, 'icon' : icon, 'submenu' : [], 'type' : 'category'}
                 self._bp_category[title] = category
                 self._bp_menu.append(category)
             else:
