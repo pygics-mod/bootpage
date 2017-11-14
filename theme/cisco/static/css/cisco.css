@@ -1,6 +1,13 @@
 /* global */
 body {
 	overflow-x:hidden;
+
+	--cisco-color-progress: #ffc107;	
+	--cisco-color-1: #0071bc;
+	--cisco-color-2: #268fd4;
+	--cisco-color-3: #67b2e4;
+	--cisco-color-4: #bedef3;
+	--cisco-color-5: #ffffff;
 }
 
 /* navigation */
@@ -9,7 +16,7 @@ body {
 	height: 100%;
 }
 
-.cisco-progress-wrap {
+#cisco-progress-wrap {
 	position: absolute;
 	z-index: 1011;
 	top: 48px;
@@ -18,12 +25,12 @@ body {
 	height: 2px;
 }
 
-#cisco-progress {
+.cisco-progress {
 	position: relative;
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	background-color: #93bce0;
+	background-color: var(--cisco-color-progress);
 }
 
 .cisco-topnav {
@@ -32,7 +39,7 @@ body {
 	top: 0px;
 	width:100%;
 	height: 50px;
-	background-color:#0071BC;
+	background-color: var(--cisco-color-1);
 }
 
 .cisco-menu-expander-wrap {
@@ -40,7 +47,7 @@ body {
 	float: left;
 	width: 50px;
 	height: 100%;
-	background-color: #0071BC;
+	background-color: var(--cisco-color-1);
 }
 
 #cisco-menu-expander {
@@ -50,6 +57,7 @@ body {
 	width: 20px;
 	height: 21px;
 	margin: auto;
+	cursor: pointer;
 	-webkit-transition: .5s ease-in-out;
 	-webkit-transform: rotate(0deg);
 	-moz-transition: .5s ease-in-out;
@@ -58,7 +66,6 @@ body {
 	-o-transform: rotate(0deg);
 	transition: .5s ease-in-out;
 	transform: translate(-50%,-50%);
-	cursor: pointer;
 }
 
 #cisco-menu-expander span {
@@ -69,7 +76,7 @@ body {
 	height: 1.5px;
 	border-radius: 9px;
 	opacity: 1;
-	background: #ffffff;
+	background: var(--cisco-color-5);
 	-webkit-transform: rotate(0deg);
 	-webkit-transition: .25s ease-in-out;
 	-moz-transform: rotate(0deg);
@@ -122,14 +129,14 @@ body {
 	margin: 4px 0px;
 	font-size: 28px;
 	font-weight: bold;
-	color: #fff !important;
+	color: var(--cisco-color-5) !important;
 }
 
 .cisco-topnav-button-wrap {
 	float: right;
 	height: 100%;
 	margin-right: 30px;
-	background-color: #0071BC;
+	background-color: var(--cisco-color-1);
 }
 
 .cisco-topnav-button {
@@ -147,14 +154,14 @@ body {
 	margin-right: auto;
 	border-radius: 20px;
 	text-align: center;
-	background: hsla(0 ,0% ,100%,0.2);
+	background: var(--cisco-color-2);
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
 .cisco-topnav-circle-selected {
-	background: hsla(0 ,0% ,100%,0.5);
+	background: var(--cisco-color-3);
 	-webkit-transition: .25s ease-in-out;
 	-moz-transition: .25s ease-in-out;
 	-o-transition: .25s ease-in-out;
@@ -176,7 +183,7 @@ body {
 .cisco-sidenav-menu-col {
     width: 100%;
     height: 50px;
-    border-bottom: 1px solid hsla(0,0%, 100% ,0.2);
+    border-bottom: 1px solid var(--cisco-color-3);
 }
 
 .cisco-sidenav-icon-wrap {

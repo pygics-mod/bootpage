@@ -1,3 +1,10 @@
+function createVid() {
+	return 'v-xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+		return v.toString(16);
+	});
+}
+
 function pageStopPropagation(e) {
 	if(e.stopPropagation) { e.stopPropagation(); }
 	else { e.cancelBubble = true; }
@@ -5,11 +12,18 @@ function pageStopPropagation(e) {
 
 var loading_queue = [];
 var progress_remain = 0;
+var current_progress = null;
 
 function addLoading(id) {
 	if (!loading_queue.length) {
-		$("#cisco-progress").clearQueue();
-		$("#cisco-progress").css("left", 0);
+		if (current_progress != null) {
+			var progress = $("#" + current_progress);
+			progress.clearQueue();
+			progress.css("display", "none");
+		}
+		var vid = createVid();
+		current_progress = vid;
+		$("#cisco-progress-wrap").html('<div id="' + vid + '" class="cisco-progress"></div>');
 		progress_remain = window.innerWidth;
 	}
 	loading_queue.push(id);
@@ -17,16 +31,17 @@ function addLoading(id) {
 
 function delLoading(id) {
 	setTimeout(function() {
+		var moving = progress_remain / loading_queue.length;
+		console.log('remain', progress_remain, 'moving', moving);
+		$("#" + current_progress).animate({left:"+="+moving}, 300);
+		progress_remain = progress_remain - moving;
 		loading_queue.pop();
 		if (loading_queue.length == 0) {
-			$("#cisco-progress").animate({left:window.innerWidth*2}, 800);
+			var progress = $("#" + current_progress);
+			progress.animate({left:window.innerWidth}, 600);
+			progress.fadeOut(600);
 		}
-		else {
-			var moving = progress_remain / loading_queue.length
-			$("#cisco-progress").animate({left:"+="+moving}, 400);
-			progress_remain = progress_remain - moving;
-		}
-	}, 200);
+	}, 100);
 };
 
 page_preproc = addLoading;
@@ -34,6 +49,13 @@ page_postproc = delLoading;
 page_errproc = delLoading;
 
 $(document).ready(function() {
+	
+	$(".bootpage-link").unbind("click");
+	$(".bootpage-link").click(function() {
+		loading_queue = [];
+		$("#page_init").attr("page_url", $(this).attr("page_url"));
+		page_patch("page_init");
+	});
 
 	$("#cisco-menu-expander").click(function(e) {
 		pageStopPropagation(e);

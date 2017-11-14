@@ -52,9 +52,10 @@ class BootPage(Page):
         self._bp_menu = []
         self._bp_category = {}
     
-    def menu(self, title, icon, **opts):
+    def menu(self, title, icon, method='r', **opts):
         
         def wrapper(func):
+            crud = method.lower()
             id = createVid()
             name = func.__name__
             url = '%s/%s' % (self.url if self.url != '/' else '', name)
@@ -63,17 +64,21 @@ class BootPage(Page):
             self._bp_menu.append(desc)
             self._bp_theme.__render__(self)
             
-            @rest('GET', url, **opts)
-            def get(req, *argv, **kargs): return func(req, *argv, **kargs)
+            if 'r' in crud or '*' in crud:
+                @rest('GET', url, **opts)
+                def get(req, *argv, **kargs): return func(req, *argv, **kargs)
             
-            @rest('POST', url, **opts)
-            def post(req, *argv, **kargs): return func(req, *argv, **kargs)
+            if 'c' in crud or '*' in crud:
+                @rest('POST', url, **opts)
+                def post(req, *argv, **kargs): return func(req, *argv, **kargs)
              
-            @rest('PUT', url, **opts)
-            def put(req, *argv, **kargs): return func(req, *argv, **kargs)
+            if 'u' in crud or '*' in crud:
+                @rest('PUT', url, **opts)
+                def put(req, *argv, **kargs): return func(req, *argv, **kargs)
              
-            @rest('DELETE', url, **opts)
-            def delete(req, *argv, **kargs): return func(req, *argv, **kargs)
+            if 'd' in crud or '*' in crud:
+                @rest('DELETE', url, **opts)
+                def delete(req, *argv, **kargs): return func(req, *argv, **kargs)
             
             if self._page_init == '/page/empty':
                 self._page_lock.on()
