@@ -223,9 +223,9 @@ body {
     height: 50px;
     border-bottom: 1px solid hsla(0,0%, 100% ,0.2);
 }
-.selected{
+/*.selected{
 	background-color: black;
-}
+}*/
 
 .cisco-sidenav-icon-wrap {
 	position: relative;
