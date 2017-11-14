@@ -196,3 +196,18 @@
   color: #fff;
   font-size: .70em;
 }
+
+.icon-newcheck:before {
+  content: "\e91b";
+  color: #fff;
+}
+
+.icon-newstatus:before {
+  content: "\e91c";
+  color: #fff;
+}
+
+.icon-newsummary:before {
+  content: "\e91d";
+  color: #fff;
+}
