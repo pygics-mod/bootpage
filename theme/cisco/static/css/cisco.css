@@ -384,6 +384,11 @@ body {
 	background-color: #268fd4;
 }
 
+.cisco-submenu-text > .sidenav-icon-asset {
+	float: left;
+	margin: 25px 0px 0px 12px;
+}
+
 .cisco-submenu-closer {
 	display: none;
 	position: absolute;

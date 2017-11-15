@@ -59,17 +59,17 @@ $(document).ready(function() {
 			$(".cisco-submenu").removeClass("menu_visible");
 			$(".cisco-submenu-closer").removeClass("wait_leave");
 		} else {
-			if(!$("#cisco-menu-expander").hasClass("menu_expanded")) {
-				var submenu = $($(this).attr("submenu"));
-				if (!submenu.hasClass("menu_visible")) {
-					$(".cisco-submenu").removeClass("menu_visible");
-					submenu.addClass("menu_visible");
-					$(".cisco-submenu-closer").addClass("wait_leave");
-				} else {
-					submenu.removeClass("menu_visible");
-					$(".cisco-submenu-closer").removeClass("wait_leave");
-				}
+//			if(!$("#cisco-menu-expander").hasClass("menu_expanded")) {
+			var submenu = $($(this).attr("submenu"));
+			if (!submenu.hasClass("menu_visible")) {
+				$(".cisco-submenu").removeClass("menu_visible");
+				submenu.addClass("menu_visible");
+				$(".cisco-submenu-closer").addClass("wait_leave");
+			} else {
+				submenu.removeClass("menu_visible");
+				$(".cisco-submenu-closer").removeClass("wait_leave");
 			}
+//			}
 		}
 	});
 	

@@ -93,7 +93,7 @@
 			            <ul class="cisco-submenu-list-wrap">
 {% for submenu in menu.submenu %}
 			                <li class="cisco-submenu-list bootpage-link" sidenav="#{{ menu.id }}-sidenav" page_url="{{ submenu.url }}">
-			                    <p class="cisco-submenu-text">{{ submenu.title }}</p>
+			                    <p class="cisco-submenu-text">{{ submenu.icon }} {{ submenu.title }}</p>
 			                </li>
 {% endfor %}
 			            </ul>
