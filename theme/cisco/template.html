@@ -13,28 +13,32 @@
 			</div>
 		</div>
 		<div class="cisco-brand-wrap">
-			<img class="cisco-brand-img bootpage-link" src="{{ logo }}" page_url="{{ init }}">
-			<a class="cisco-brand-title bootpage-link" page_url="{{ init }}">{{ title }}</a>
+			<div class="cisco-brand-img-wrap">
+				<img class="cisco-brand-img bootpage-link" src="{{ logo }}" page_url="{{ init }}">
+			</div>
+			<div class="cisco-brand-title-wrap">
+				<a class="cisco-brand-title bootpage-link" page_url="{{ init }}">{{ title }}</a>
+			</div>
 		</div>
 		<div class="cisco-topnav-button-wrap">
 			<div class="cisco-topnav-button">
 				<div class="cisco-topnav-circle" id="cisco-topnav-profile">
-					<span class="icon-asset icon-profile"></span>
+					<span class="topnav-icon-asset icon-profile"></span>
 				</div>
 			</div>
 			<div class="cisco-topnav-button">
 				<div class="cisco-topnav-circle" id="cisco-topnav-refresh">
-					<span class="icon-asset icon-refresh"></span>
+					<span class="topnav-icon-asset icon-refresh"></span>
 				</div>
 			</div>
 			<div class="cisco-topnav-button">
 				<div class="cisco-topnav-circle" id="cisco-topnav-setting">
-					<span class="icon-asset icon-setting"></span>
+					<span class="topnav-icon-asset icon-setting"></span>
 				</div>
 			</div>
 			<div class="cisco-topnav-button">
 				<div class="cisco-topnav-circle" id="cisco-topnav-alarm">
-					<span class="icon-asset icon-alert"></span>
+					<span class="topnav-icon-asset icon-alert"></span>
 				</div>
 			</div>
 		</div>
@@ -46,21 +50,19 @@
 		<div class="cisco-sidenav-menu-wrap">
 {% for menu in menu_list %}
 {% if menu.type == "menu" %}
-			<div class="cisco-sidenav-menu-col cisco-sidenav-type-menu bootpage-link" page_url="{{ menu.url }}">
+			<div id="{{ menu.id }}-sidenav" class="cisco-sidenav-menu-col bootpage-link" sidenav="#{{ menu.id }}-sidenav" page_url="{{ menu.url }}">
 {% elif menu.type == "category" %}
-			<div class="cisco-sidenav-menu-col cisco-sidenav-type-submenu" target_submenu="{{ menu.id }}">
+			<div id="{{ menu.id }}-sidenav" class="cisco-sidenav-menu-col" sidenav="#{{ menu.id }}-sidenav" submenu="#{{ menu.id }}-submenu">
 {% endif %}
-				<div class="cisco-sidenav-icon-wrap">
-					<span class="sidenav-icon-asset icon-summary"></span>
-				</div>
+				<div class="cisco-sidenav-icon-wrap">{{ menu.icon }}</div>
 			</div>
 {% endfor %}
 		</div>
 		
 		<!-- information icon -->
-		<div class="cisco-sidenav-menu-info-wrap">
-			<div class="cisco-sidenav-menu-info">
-				<span class="icon-asset icon-information"></span>
+		<div class="cisco-sidenav-info-wrap">
+			<div class="cisco-sidenav-info">
+				<span class="topnav-icon-asset icon-information"></span>
 			</div>
 		</div>
 		<!-- information icon end -->
@@ -74,23 +76,23 @@
 			<a>
 {% for menu in menu_list %}
 {% if menu.type == "menu" %}
-				<div class="cisco-mainmenu-col cisco-mainmenu-type-menu bootpage-link" page_url="{{ menu.url }}">
+				<div class="cisco-mainmenu-col bootpage-link" sidenav="#{{ menu.id }}-sidenav" page_url="{{ menu.url }}">
 					<div class="cisco-mainmenu-title-wrap">
 						<p class="cisco-mainmenu-title">{{ menu.title }}</p>
 					</div>
 				</div>
 {% elif menu.type == "category" %}
-				<div class="cisco-mainmenu-col cisco-mainmenu-type-submenu">
+				<div class="cisco-mainmenu-col cisco-mainmenu-has-submenu">
 					<div class="cisco-mainmenu-title-wrap">
 						<p class="cisco-mainmenu-title">{{ menu.title }}</p>
 					</div>
 					<div class="cisco-notice-submenu-wrap">
 						<div class="cisco-notice-submenu"><span class="icon-Asset-31"></span></div>
 					</div>
-					<div id="{{ menu.id }}" class="cisco-submenu"> 
+					<div id="{{ menu.id }}-submenu" class="cisco-submenu"> 
 			            <ul class="cisco-submenu-list-wrap">
 {% for submenu in menu.submenu %}
-			                <li class="cisco-submenu-list bootpage-link" page_url="{{ submenu.url }}">
+			                <li class="cisco-submenu-list bootpage-link" sidenav="#{{ menu.id }}-sidenav" page_url="{{ submenu.url }}">
 			                    <p class="cisco-submenu-text">{{ submenu.title }}</p>
 			                </li>
 {% endfor %}

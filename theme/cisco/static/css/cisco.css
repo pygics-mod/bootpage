@@ -1,8 +1,31 @@
 /* global */
+
+@font-face {
+    font-family: roboto-thin;
+    src: url(../fonts/Roboto-Thin.ttf);
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: roboto-medium;
+    src: url(../fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(../fonts/Roboto-Bold.ttf);
+}
+
 body {
 	overflow-x:hidden;
+	font-family: roboto-light;
 
-	--cisco-color-progress: #ffc107;	
+	--cisco-color-noti-1: #ffc107;
+	--cisco-color-noti-2: #fffee0;
 	--cisco-color-1: #0071bc;
 	--cisco-color-2: #268fd4;
 	--cisco-color-3: #67b2e4;
@@ -30,7 +53,7 @@ body {
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	background-color: var(--cisco-color-progress);
+	background-color: var(--cisco-color-noti-1);
 }
 
 .cisco-topnav {
@@ -118,18 +141,37 @@ body {
 	margin-left: 30px;
 }
 
+.cisco-brand-img-wrap {
+	width: 100px;
+	height: 100%;
+	text-align: center;
+	padding-right: 10px;
+	float: left;
+}
+
 .cisco-brand-img {
+	position: relative;
+	top: 50%;
 	height: 30px;
-	margin: 10px 20px 10px 0px;
-	vertical-align: baseline;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.cisco-brand-title-wrap {
+	float: left;
+	padding-right: 0 30px;
+	text-align: center;
 }
 
 .cisco-brand-title {
-	float: right;
-	margin: 4px 0px;
-	font-size: 28px;
+	font-family: roboto-light;
+	height:50px;
+	line-height: 50px;
+	font-size: 1.5em;
 	font-weight: bold;
 	color: var(--cisco-color-5) !important;
+	letter-spacing: 1px;
 }
 
 .cisco-topnav-button-wrap {
@@ -173,7 +215,7 @@ body {
 	z-index: 1008;
 	width: 50px;
 	height: 100%;
-	background-color: #268fd4;
+	background-color: var(--cisco-color-2);
 }   
 
 .cisco-sidenav-menu-wrap {
@@ -184,6 +226,10 @@ body {
     width: 100%;
     height: 50px;
     border-bottom: 1px solid var(--cisco-color-3);
+}
+
+.cisco-sidenav-menu-col.cisco-sidenav-menu-col-selected {
+	background-color: var(--cisco-color-3);
 }
 
 .cisco-sidenav-icon-wrap {
@@ -200,7 +246,7 @@ body {
 	
 }
 
-.cisco-sidenav-menu-info-wrap {
+.cisco-sidenav-info-wrap {
 	position: absolute;
 	bottom: 50px;
 	width: 100%;
@@ -208,7 +254,7 @@ body {
 	background-color: #268fd4;
 }
 
-.cisco-sidenav-menu-info {
+.cisco-sidenav-info {
 	position: relative;
 	top: 50%;
 	width: 36px;
@@ -232,11 +278,11 @@ body {
 	height: 100%;
 	margin-top: 50px;
 	background-color:hsla(204, 100%, 37%, 0.8);
-	-webkit-transition: .3s ease-in;
-	-moz-transition: .3s ease-in;
-	-o-transition: .3s ease-in;
-	-ms-transition: .3s ease-in;
-	transition: .3s ease-in;
+	-webkit-transition: .2s ease-in;
+	-moz-transition: .2s ease-in;
+	-o-transition: .2s ease-in;
+	-ms-transition: .2s ease-in;
+	transition: .2s ease-in;
 }
 
 .cisco-mainmenu.menu_expanded {
@@ -261,6 +307,7 @@ body {
 	width: 85%;
 	height: 50px;
 	text-align: center;
+	font-family: roboto-light;
 }
 
 .cisco-mainmenu-title {
@@ -363,9 +410,9 @@ body {
 	left: 50%;
 	width: 600px;
 	height: 400px;
-	border: 2px solid rgb(148, 197, 230);
+	border: 2px solid var(--cisco-color-noti-1);
 	opacity: 0;
-	background-color: white;
+	background-color: var(--cisco-color-noti-2);
 	-webkit-transition: all .5s ease-in-out;
 	-moz-transition: all .5s ease-in-out;
 	-o-transition: all .5s ease-in-out;
@@ -385,13 +432,13 @@ body {
 
 .cisco-profile-wrap {
 	position: fixed;
-	z-index: 1004;
+	z-index: 1003;
 	top:-151px;
 	right: 100px;
 	width: 300px;
 	height: 200px;
-	border: .5px solid rgba(2, 113, 188, 0.25);
-	background-color: #f2f9ff;
+	border: 2px solid var(--cisco-color-noti-1);
+	background-color: var(--cisco-color-noti-2);
 	-webkit-transition: .3s ease-in;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
@@ -400,7 +447,7 @@ body {
 }
 
 .cisco-profile-show {
-	top:49px;
+	top:48px;
 }
 
 .cisco-profile {
@@ -410,12 +457,12 @@ body {
 .cisco-alarm-wrap {
 	position: absolute;
 	float: right;
-	z-index: 1003;
+	z-index: 1004;
 	right: -300px;
 	width: 300px;
 	height: 100%;
-	border-left: 1px solid #cce4f5;
-	background: #f2f9ff;
+	border-left: 2px solid var(--cisco-color-noti-1);
+	background-color: var(--cisco-color-noti-2);
 	-webkit-transition: .3s ease-in;
 	-moz-transition: .3s ease-in;
 	-o-transition: .3s ease-in;
@@ -435,13 +482,14 @@ body {
 	width: calc(100% - 50px);
 	height: calc(100% - 50px);
 	padding: 1.5em 1.5em 0em 1.5em;
-	color: #4b94d6;
 	overflow-y: auto;
-	-webkit-transition: .3s ease-in;
-	-moz-transition: .3s ease-in;
-	-o-transition: .3s ease-in;
-	-ms-transition: .3s ease-in;
-	transition: .3s ease-in;
+	color: #4b94d6;
+	background-color: rgba(255,255,255,0.83);
+	-webkit-transition: .2s ease-in;
+	-moz-transition: .2s ease-in;
+	-o-transition: .2s ease-in;
+	-ms-transition: .2s ease-in;
+	transition: .2s ease-in;
 }
 
 .cisco-init-wrap.menu_expanded {

@@ -24,12 +24,3 @@
 		</ul>
 	</div>
 </nav>
-<script>
-$(document).ready(function(){
-	$(".bootpage-link").click(function() {
-		var new_url = $(this).attr("page_url");
-		$("#page_init").attr("page_url", $(this).attr("page_url"));
-		page_patch("page_init");
-	});
-});
-</script>

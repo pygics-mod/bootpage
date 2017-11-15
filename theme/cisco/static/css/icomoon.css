@@ -25,7 +25,7 @@
 }
 
 /*icomoon font setup*/
-.icon-asset{
+.topnav-icon-asset, .sidenav-icon-asste{
     font-size: 1.3em;
     position: relative;
     top: 24%;
@@ -164,7 +164,7 @@
   color: #fff;
 }
 
-.icon-Asset-31:before {
+.icon-submenu:before {
   content: "\e911";
   color: #fff;
 }
@@ -195,4 +195,19 @@
   content: "\e914";
   color: #fff;
   font-size: .70em;
+}
+
+.icon-newcheck:before {
+  content: "\e91b";
+  color: #fff;
+}
+
+.icon-newstatus:before {
+  content: "\e91c";
+  color: #fff;
+}
+
+.icon-newsummary:before {
+  content: "\e91d";
+  color: #fff;
 }
